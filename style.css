@@ -5,7 +5,8 @@ body {
   font-family: Arial, sans-serif; /* Easy-to-read font */
   margin: 0;
   padding: 0;
-  background-color: #f5f7fa; /* Light background color */
+  background-color: #fff; /* Light background color */
+  color: #222; /* Darker text for better contrast */
 }
 
 /* Header section styles */
@@ -141,7 +142,7 @@ body.dark-mode .card-back {
 #progress-bar-container {
   width: 100%;
   height: 6px;
-  background: #e0e0e0;
+  background: #e9ecef;
   position: fixed;
   top: 0;
   left: 0;
@@ -150,7 +151,7 @@ body.dark-mode .card-back {
 #progress-bar {
   height: 100%;
   width: 0%;
-  background: #0071c5;
+  background: #005fa3;
   transition: width 0.2s;
 }
 
