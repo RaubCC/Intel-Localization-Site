@@ -197,4 +197,24 @@ window.addEventListener('DOMContentLoaded', function() {
     // Optionally, check every few seconds in case of dynamic changes
     setInterval(updateDir, 2000);
   })();
+
+  // Form validation for accessibility
+  const newsletterForm = document.querySelector('form[aria-labelledby="newsletter-heading"]');
+  if (newsletterForm) {
+    newsletterForm.addEventListener('submit', function(e) {
+      const emailInput = document.getElementById('subscriberEmail');
+      const emailHelp = document.getElementById('emailHelp');
+      if (!emailInput.value || !emailInput.validity.valid) {
+        e.preventDefault();
+        emailInput.setAttribute('aria-invalid', 'true');
+        emailHelp.textContent = 'يرجى إدخال بريد إلكتروني صحيح.';
+        emailHelp.classList.add('text-danger');
+        emailInput.focus();
+      } else {
+        emailInput.removeAttribute('aria-invalid');
+        emailHelp.textContent = 'لن نشارك بريدك الإلكتروني مع أي طرف ثالث.';
+        emailHelp.classList.remove('text-danger');
+      }
+    });
+  }
 });

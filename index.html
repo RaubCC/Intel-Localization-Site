@@ -10,6 +10,9 @@
 </head>
 <body>
 
+  <!-- Skip to main content link for accessibility -->
+  <a href="#main-content" class="visually-hidden-focusable bg-primary text-white p-2 position-absolute top-0 start-0" style="z-index: 1000;">Skip to main content</a>
+
   <!-- Header / Hero Section -->
   <header>
     <div>
@@ -177,6 +180,7 @@
   <button id="scroll-right" aria-label="Scroll right">&#8594;</button>
 
   <!-- Timeline Cards Section -->
+  <main id="main-content">
   <section>
     <!-- Card 1: 1968 -->
     <div>
@@ -267,7 +271,7 @@
       </p>
     </div>
   </section>
-
+  </main>
   <!-- Tooltip for fun facts -->
   <div id="tooltip" role="tooltip" style="display:none;"></div>
 
