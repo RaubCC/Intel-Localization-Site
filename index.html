@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Intel: Sustainability Through the Ages</title>
   <link rel="stylesheet" href="style.css" />
+  <!-- Add Bootstrap RTL CSS for right-to-left support -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
 </head>
 <body>
 
@@ -26,6 +28,28 @@
       </p>
     </div>
   </header>
+
+  <!-- Three-column layout using Bootstrap grid with RTL support -->
+  <div class="container" dir="rtl" style="margin-top: 2rem;">
+    <div class="row">
+      <!-- First column -->
+      <div class="col">
+        <h2>عمود 1</h2> <!-- Column 1 in Arabic -->
+        <p>هذا هو محتوى العمود الأول.</p>
+      </div>
+      <!-- Second column -->
+      <div class="col">
+        <h2>عمود 2</h2>
+        <p>هذا هو محتوى العمود الثاني.</p>
+      </div>
+      <!-- Third column -->
+      <div class="col">
+        <h2>عمود 3</h2>
+        <p>هذا هو محتوى العمود الثالث.</p>
+      </div>
+    </div>
+  </div>
+  <!-- End of three-column layout -->
 
   <!-- Progress bar for timeline scroll -->
   <div id="progress-bar-container">
