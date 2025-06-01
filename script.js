@@ -160,4 +160,41 @@ window.addEventListener('DOMContentLoaded', function() {
       timelineSection.scrollBy({ left: -300, behavior: 'smooth' });
     }
   });
+
+  // Auto-detect language and adjust layout direction (RTL/LTR)
+  (function() {
+    // List of RTL language codes
+    var rtlLangs = ['ar', 'he', 'fa', 'ur'];
+
+    // Function to set dir attribute based on language
+    function updateDir() {
+      var html = document.documentElement;
+      var lang = html.lang || navigator.language || navigator.userLanguage || '';
+      lang = lang.toLowerCase().split('-')[0]; // e.g., 'ar', 'en'
+      if (rtlLangs.includes(lang)) {
+        html.setAttribute('dir', 'rtl');
+        // Optionally, add RTL class to body for extra styling
+        document.body.classList.add('rtl');
+      } else {
+        html.setAttribute('dir', 'ltr');
+        document.body.classList.remove('rtl');
+      }
+    }
+
+    // Run on page load
+    updateDir();
+
+    // Observe changes to <html lang="..."> (e.g., by Google Translate)
+    var observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        if (mutation.attributeName === 'lang') {
+          updateDir();
+        }
+      });
+    });
+    observer.observe(document.documentElement, { attributes: true });
+
+    // Optionally, check every few seconds in case of dynamic changes
+    setInterval(updateDir, 2000);
+  })();
 });
