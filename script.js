@@ -182,13 +182,111 @@ window.addEventListener('DOMContentLoaded', function() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  // --- Enhanced Timeline Arrow Navigation for Accessibility and RTL Support ---
+  // Helper: Get all visible timeline cards
+  function getVisibleCards() {
+    return Array.from(cards).filter(card => card.style.display !== 'none');
+  }
+
+  // Helper: Focus and scroll a card into view
+  function focusCard(card) {
+    card.setAttribute('tabindex', '0'); // Make card focusable
+    card.focus();
+    card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  }
+
+  // Track the currently focused card index
+  let currentCardIdx = 0;
+
+  // Initialize: set tabindex for all cards
+  getVisibleCards().forEach((card, idx) => {
+    card.setAttribute('tabindex', idx === 0 ? '0' : '-1');
+  });
+
+  // Update tabindex when filter/search changes
+  function updateTabIndexes() {
+    const visible = getVisibleCards();
+    visible.forEach((card, idx) => {
+      card.setAttribute('tabindex', idx === currentCardIdx ? '0' : '-1');
+    });
+  }
+
+  // Left arrow button click
+  scrollLeftBtn.onclick = function() {
+    const visible = getVisibleCards();
+    if (visible.length === 0) return;
+    // For RTL, left arrow means next card (right-to-left)
+    const isRTL = document.documentElement.dir === 'rtl';
+    if (isRTL) {
+      if (currentCardIdx < visible.length - 1) {
+        currentCardIdx++;
+        focusCard(visible[currentCardIdx]);
+        updateTabIndexes();
+      }
+    } else {
+      if (currentCardIdx > 0) {
+        currentCardIdx--;
+        focusCard(visible[currentCardIdx]);
+        updateTabIndexes();
+      }
+    }
+  };
+
+  // Right arrow button click
+  scrollRightBtn.onclick = function() {
+    const visible = getVisibleCards();
+    if (visible.length === 0) return;
+    // For RTL, right arrow means previous card (right-to-left)
+    const isRTL = document.documentElement.dir === 'rtl';
+    if (isRTL) {
+      if (currentCardIdx > 0) {
+        currentCardIdx--;
+        focusCard(visible[currentCardIdx]);
+        updateTabIndexes();
+      }
+    } else {
+      if (currentCardIdx < visible.length - 1) {
+        currentCardIdx++;
+        focusCard(visible[currentCardIdx]);
+        updateTabIndexes();
+      }
+    }
+  };
+
+  // When a card is clicked, update currentCardIdx
+  cards.forEach((card, idx) => {
+    card.addEventListener('click', function() {
+      const visible = getVisibleCards();
+      const newIdx = visible.indexOf(card);
+      if (newIdx !== -1) {
+        currentCardIdx = newIdx;
+        updateTabIndexes();
+      }
+    });
+  });
+
+  // When search/filter changes, reset focus to first visible card
+  searchBox.addEventListener('input', function() {
+    currentCardIdx = 0;
+    updateTabIndexes();
+  });
+  if (decadeFilter) {
+    decadeFilter.addEventListener('change', function() {
+      currentCardIdx = 0;
+      updateTabIndexes();
+    });
+  }
+
   // Keyboard navigation for timeline (left/right arrows)
   document.addEventListener('keydown', function(e) {
     if (document.activeElement.tagName === 'INPUT') return;
+    const isRTL = document.documentElement.dir === 'rtl';
     if (e.key === 'ArrowRight') {
-      timelineSection.scrollBy({ left: 300, behavior: 'smooth' });
+      // For RTL, right arrow = previous card
+      scrollRightBtn.click();
     } else if (e.key === 'ArrowLeft') {
-      timelineSection.scrollBy({ left: -300, behavior: 'smooth' });
+      // For RTL, left arrow = next card
+      scrollLeftBtn.click();
     }
   });
 
