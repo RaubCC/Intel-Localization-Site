@@ -270,13 +270,6 @@
   <p>مرر لعرض الجدول الزمني | مرر المؤشر فوق البطاقات لمعرفة المزيد!</p>
   <!-- Add script for interactivity -->
   <script src="script.js"></script>
-  <script>
-    // Beginner-friendly form handler
-    document.querySelector('form').onsubmit = function(e) {
-      e.preventDefault();
-      document.getElementById('formMessage').style.display = 'block';
-    };
-  </script>
 
   <!-- Footer Section using Bootstrap -->
   <footer class="bg-light text-center text-lg-start mt-5">
@@ -309,10 +302,6 @@
             <div id="emailHelp" class="form-text">لن نشارك بريدك الإلكتروني مع أي طرف ثالث.</div>
           </div>
           <button type="submit" class="btn btn-primary w-100">اشترك</button>
-          <!-- Add this inside your form, after the button -->
-          <div id="formMessage" style="display:none; color:green; margin-top:10px;">
-            تم الاشتراك بنجاح!
-          </div>
         </form>
       </div>
     </div>
