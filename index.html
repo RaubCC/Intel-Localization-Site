@@ -392,5 +392,40 @@
     }
   }
   </style>
+
+  <!-- Debugging script to inspect computed styles (remove in production) -->
+  <script>
+  // Pass in the element you want to inspect, for example:
+  const element = document.querySelector('.card'); // Change selector as needed
+
+  // Get computed styles for the element and its parent
+  const elementComputedStyles = window.getComputedStyle(element);
+  const parentComputedStyles = window.getComputedStyle(element.parentElement);
+
+  // Collect the style data
+  const data = {
+    elementStyles: {
+      position: elementComputedStyles.getPropertyValue('position'),
+      display: elementComputedStyles.getPropertyValue('display'),
+      transform: elementComputedStyles.getPropertyValue('transform'),
+      left: elementComputedStyles.getPropertyValue('left'),
+      top: elementComputedStyles.getPropertyValue('top'),
+      marginLeft: elementComputedStyles.getPropertyValue('margin-left'),
+      marginTop: elementComputedStyles.getPropertyValue('margin-top'),
+    },
+    parentStyles: {
+      display: parentComputedStyles.getPropertyValue('display'),
+      position: parentComputedStyles.getPropertyValue('position'),
+      textAlign: parentComputedStyles.getPropertyValue('text-align'),
+      justifyContent: parentComputedStyles.getPropertyValue('justify-content'),
+      alignItems: parentComputedStyles.getPropertyValue('align-items'),
+      width: parentComputedStyles.getPropertyValue('width'),
+      height: parentComputedStyles.getPropertyValue('height'),
+    }
+  };
+
+  // Show the result in the console
+  console.log(data);
+  </script>
 </body>
 </html>
