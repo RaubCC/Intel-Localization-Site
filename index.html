@@ -11,7 +11,7 @@
 <body>
 
   <!-- Skip to main content link for accessibility -->
-  <a href="#main-content" class="visually-hidden-focusable bg-primary text-white p-2 position-absolute top-0 start-0" style="z-index: 1000;">Skip to main content</a>
+  <a href="#main-content" class="visually-hidden-focusable bg-primary text-white p-2 position-absolute top-0 start-0" style="z-index: 1000;">تخطي إلى المحتوى الرئيسي</a>
 
   <!-- Header / Hero Section -->
   <header>
@@ -98,11 +98,11 @@
   <!-- End of Bootstrap Accordion -->
 
   <!-- Bootstrap Carousel: Intel Sustainability Highlights -->
-  <div id="intelCarousel" class="carousel slide my-5" data-bs-ride="carousel">
+  <div id="intelCarousel" class="carousel slide my-5" data-bs-ride="carousel" tabindex="0" aria-label="أبرز محطات الاستدامة من إنتل">
     <div class="carousel-indicators">
-      <button type="button" data-bs-target="#intelCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="الشريحة الأولى"></button>
-      <button type="button" data-bs-target="#intelCarousel" data-bs-slide-to="1" aria-label="الشريحة الثانية"></button>
-      <button type="button" data-bs-target="#intelCarousel" data-bs-slide-to="2" aria-label="الشريحة الثالثة"></button>
+      <button type="button" data-bs-target="#intelCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="الشريحة الأولى" tabindex="0"></button>
+      <button type="button" data-bs-target="#intelCarousel" data-bs-slide-to="1" aria-label="الشريحة الثانية" tabindex="0"></button>
+      <button type="button" data-bs-target="#intelCarousel" data-bs-slide-to="2" aria-label="الشريحة الثالثة" tabindex="0"></button>
     </div>
     <div class="carousel-inner">
       <div class="carousel-item active">
@@ -127,11 +127,11 @@
         </div>
       </div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#intelCarousel" data-bs-slide="prev">
+    <button class="carousel-control-prev" type="button" data-bs-target="#intelCarousel" data-bs-slide="prev" aria-label="السابق" tabindex="0">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">السابق</span>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#intelCarousel" data-bs-slide="next">
+    <button class="carousel-control-next" type="button" data-bs-target="#intelCarousel" data-bs-slide="next" aria-label="التالي" tabindex="0">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">التالي</span>
     </button>
@@ -144,25 +144,25 @@
   </div>
 
   <!-- Dark mode toggle button -->
-  <button id="dark-mode-toggle" aria-label="Toggle dark mode">🌙</button>
+  <button id="dark-mode-toggle" aria-label="تبديل الوضع الليلي" tabindex="0">🌙</button>
 
   <!-- Search/filter box -->
-  <input type="text" id="search-box" placeholder="Search timeline..." aria-label="Search timeline" />
+  <input type="text" id="search-box" placeholder="ابحث في الجدول الزمني..." aria-label="ابحث في الجدول الزمني" tabindex="0" />
 
   <!-- Timeline navigation buttons -->
-  <button id="scroll-left" aria-label="Scroll left">&#8592;</button>
-  <button id="scroll-right" aria-label="Scroll right">&#8594;</button>
+  <button id="scroll-left" aria-label="تمرير لليسار" tabindex="0">&#8592;</button>
+  <button id="scroll-right" aria-label="تمرير لليمين" tabindex="0">&#8594;</button>
 
   <!-- Interactive Timeline Filter: Show/Hide Cards by Decade -->
   <div class="container my-4">
-    <label for="decadeFilter" class="form-label">Filter timeline by decade:</label>
-    <select id="decadeFilter" class="form-select" aria-label="Filter timeline by decade">
-      <option value="all">All</option>
-      <option value="1960s">1960s</option>
-      <option value="1970s">1970s</option>
-      <option value="1980s">1980s</option>
-      <option value="2000s">2000s</option>
-      <option value="2020s">2020s</option>
+    <label for="decadeFilter" class="form-label">تصفية الجدول الزمني حسب العقد:</label>
+    <select id="decadeFilter" class="form-select" aria-label="تصفية الجدول الزمني حسب العقد" tabindex="0">
+      <option value="all">الكل</option>
+      <option value="1960s">ستينيات القرن الماضي</option>
+      <option value="1970s">سبعينيات القرن الماضي</option>
+      <option value="1980s">ثمانينيات القرن الماضي</option>
+      <option value="2000s">الألفية الثانية</option>
+      <option value="2020s">العقد الحالي</option>
     </select>
   </div>
 
@@ -265,7 +265,7 @@
   </div>
 
   <!-- Back to top button -->
-  <button id="back-to-top" aria-label="العودة للأعلى">↑</button>
+  <button id="back-to-top" aria-label="العودة للأعلى" tabindex="0">↑</button>
 
   <p>مرر لعرض الجدول الزمني | مرر المؤشر فوق البطاقات لمعرفة المزيد!</p>
   <!-- Add script for interactivity -->
