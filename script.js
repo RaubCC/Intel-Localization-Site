@@ -185,7 +185,7 @@ window.addEventListener('DOMContentLoaded', function() {
   // --- Enhanced Timeline Arrow Navigation for Accessibility and RTL Support ---
   // Helper: Get all visible timeline cards
   function getVisibleCards() {
-    return Array.from(cards).filter(card => card.style.display !== 'none');
+    return Array.from(document.querySelectorAll('main section > div')).filter(card => card.style.display !== 'none');
   }
 
   // Helper: Focus and scroll a card into view
@@ -199,9 +199,13 @@ window.addEventListener('DOMContentLoaded', function() {
   let currentCardIdx = 0;
 
   // Initialize: set tabindex for all cards
-  getVisibleCards().forEach((card, idx) => {
-    card.setAttribute('tabindex', idx === 0 ? '0' : '-1');
-  });
+  function initializeTabIndexes() {
+    const visible = getVisibleCards();
+    visible.forEach((card, idx) => {
+      card.setAttribute('tabindex', idx === 0 ? '0' : '-1');
+    });
+  }
+  initializeTabIndexes();
 
   // Update tabindex when filter/search changes
   function updateTabIndexes() {
@@ -215,7 +219,6 @@ window.addEventListener('DOMContentLoaded', function() {
   scrollLeftBtn.onclick = function() {
     const visible = getVisibleCards();
     if (visible.length === 0) return;
-    // For RTL, left arrow means next card (right-to-left)
     const isRTL = document.documentElement.dir === 'rtl';
     if (isRTL) {
       if (currentCardIdx < visible.length - 1) {
@@ -236,7 +239,6 @@ window.addEventListener('DOMContentLoaded', function() {
   scrollRightBtn.onclick = function() {
     const visible = getVisibleCards();
     if (visible.length === 0) return;
-    // For RTL, right arrow means previous card (right-to-left)
     const isRTL = document.documentElement.dir === 'rtl';
     if (isRTL) {
       if (currentCardIdx > 0) {
@@ -254,7 +256,7 @@ window.addEventListener('DOMContentLoaded', function() {
   };
 
   // When a card is clicked, update currentCardIdx
-  cards.forEach((card, idx) => {
+  document.querySelectorAll('main section > div').forEach((card) => {
     card.addEventListener('click', function() {
       const visible = getVisibleCards();
       const newIdx = visible.indexOf(card);
@@ -266,10 +268,12 @@ window.addEventListener('DOMContentLoaded', function() {
   });
 
   // When search/filter changes, reset focus to first visible card
-  searchBox.addEventListener('input', function() {
-    currentCardIdx = 0;
-    updateTabIndexes();
-  });
+  if (searchBox) {
+    searchBox.addEventListener('input', function() {
+      currentCardIdx = 0;
+      updateTabIndexes();
+    });
+  }
   if (decadeFilter) {
     decadeFilter.addEventListener('change', function() {
       currentCardIdx = 0;
@@ -280,12 +284,9 @@ window.addEventListener('DOMContentLoaded', function() {
   // Keyboard navigation for timeline (left/right arrows)
   document.addEventListener('keydown', function(e) {
     if (document.activeElement.tagName === 'INPUT') return;
-    const isRTL = document.documentElement.dir === 'rtl';
     if (e.key === 'ArrowRight') {
-      // For RTL, right arrow = previous card
       scrollRightBtn.click();
     } else if (e.key === 'ArrowLeft') {
-      // For RTL, left arrow = next card
       scrollLeftBtn.click();
     }
   });
