@@ -119,6 +119,37 @@ window.addEventListener('DOMContentLoaded', function() {
     });
   });
 
+  // Interactive Timeline Filter by Decade
+  const decadeFilter = document.getElementById('decadeFilter');
+  if (decadeFilter) {
+    decadeFilter.addEventListener('change', function() {
+      const value = this.value;
+      // Get all timeline card divs inside the main section
+      const cards = document.querySelectorAll('main section > div');
+      cards.forEach(card => {
+        // Get the year from the first heading in each card
+        const yearHeading = card.querySelector('h3, h2');
+        if (!yearHeading) return;
+        const year = parseInt(yearHeading.textContent.trim(), 10);
+        let show = false;
+        if (value === 'all') {
+          show = true;
+        } else if (value === '1960s' && year >= 1960 && year < 1970) {
+          show = true;
+        } else if (value === '1970s' && year >= 1970 && year < 1980) {
+          show = true;
+        } else if (value === '1980s' && year >= 1980 && year < 1990) {
+          show = true;
+        } else if (value === '2000s' && year >= 2000 && year < 2010) {
+          show = true;
+        } else if (value === '2020s' && year >= 2020 && year < 2030) {
+          show = true;
+        }
+        card.style.display = show ? '' : 'none';
+      });
+    });
+  }
+
   // Progress bar updates on timeline scroll
   function updateProgressBar() {
     const scrollLeft = timelineSection.scrollLeft;
