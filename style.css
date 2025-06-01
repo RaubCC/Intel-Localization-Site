@@ -86,6 +86,11 @@ section p {
   text-align: center;
 }
 
+/* Distribute the three-column cards evenly with space-around */
+.row.row-cols-1.row-cols-md-3.g-4.text-center {
+  justify-content: space-around !important;
+}
+
 /* Card flip effect styles */
 .card-inner {
   position: relative;
