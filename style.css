@@ -399,3 +399,26 @@ footer.bg-light p.mb-0 {
     font-size: 1em;
   }
 }
+
+/* Responsive adjustments for three-column section */
+@media (max-width: 767.98px) {
+  .three-col-section .card {
+    min-width: 100px !important;
+    max-width: 100%;
+    height: auto !important;
+    margin-bottom: 1rem;
+  }
+  .three-col-section .card-body {
+    padding: 1rem !important;
+  }
+}
+
+/* Remove any white-space: nowrap that could prevent wrapping */
+.three-col-section .row {
+  white-space: normal !important;
+}
+
+/* Ensure even distribution and wrapping */
+.three-col-section .row {
+  justify-content: space-around !important;
+}
