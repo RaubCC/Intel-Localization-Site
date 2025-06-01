@@ -256,11 +256,20 @@
   <div id="tooltip" role="tooltip" style="display:none;"></div>
 
   <!-- Modal for card details -->
-  <div id="modal" style="display:none;">
-    <div id="modal-content">
-      <span id="modal-close" aria-label="إغلاق النافذة">&times;</span>
-      <div id="modal-body"></div>
-      <button id="share-btn">مشاركة</button>
+  <div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="detailsModalLabel">تفاصيل البطاقة</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+        </div>
+        <div class="modal-body" id="detailsModalBody">
+          <!-- سيتم تعبئة التفاصيل هنا عبر جافاسكريبت -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+        </div>
+      </div>
     </div>
   </div>
 
