@@ -173,7 +173,6 @@ window.addEventListener('DOMContentLoaded', function() {
       lang = lang.toLowerCase().split('-')[0]; // e.g., 'ar', 'en'
       if (rtlLangs.includes(lang)) {
         html.setAttribute('dir', 'rtl');
-        // Optionally, add RTL class to body for extra styling
         document.body.classList.add('rtl');
       } else {
         html.setAttribute('dir', 'ltr');
